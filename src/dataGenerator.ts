@@ -37,7 +37,7 @@ function generateUser(): User {
 const TOTAL_USERS = 2000;
 
 for (let i = 0; i < 100; i++) {
-  userPool.push(generateUser(i));
+  userPool.push(generateUser());
 }
 
 userPool.sort((a, b) => a.time - b.time);
@@ -51,7 +51,7 @@ async function ensureUsersGenerated(requiredCount: number): Promise<void> {
   while (userPool.length < requiredCount && userPool.length < TOTAL_USERS) {
     const chunkSize = Math.min(100, requiredCount - userPool.length);
     for (let i = 0; i < chunkSize; i++) {
-      userPool.push(generateUser(userPool.length));
+      userPool.push(generateUser());
     }
     
     userPool.sort((a, b) => a.time - b.time);
